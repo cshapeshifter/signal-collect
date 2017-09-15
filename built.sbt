@@ -1,6 +1,6 @@
-name := "signal-collect-minimal"
+name := "signal-collect"
 
-version := "8.0.7"
+version := "8.0.8"
 
 organization in ThisBuild := "com.signalcollect"
 

@@ -1,4 +1,5 @@
 project
+!project/plugins.sbt
 *.snapshot
 !/.gitignore
 log_messages.txt

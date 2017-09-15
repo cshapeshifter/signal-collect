@@ -1,3 +1,9 @@
+Notice regarding Scala 2.12 version
+-----------------------------------
+
+This migration to 2.12 cuts out everything to do with Kryo. It's only been tested for machine-local executions. Clustered applications are likely not supported.
+
+
 Signal/Collect
 ==============
 
