@@ -1,7 +1,9 @@
-Notice regarding Scala 2.12 version
------------------------------------
+Notice regarding Scala 2.12 branch
+----------------------------------
 
 This migration to 2.12 cuts out everything to do with Kryo. It's only been tested for machine-local executions. Clustered applications are likely not supported.
+
+Furthermore, this branch uses sbt for managing the build. To create a self-contained jar, run `sbt assembly`.
 
 
 Signal/Collect
