@@ -22,13 +22,13 @@ import org.scalacheck.Gen
 import org.scalacheck.Gen._
 import org.scalacheck.Arbitrary._
 import org.scalatest.FlatSpec
-import org.scalatest.ShouldMatchers
+import org.scalatest.Matchers._
 import org.scalatest.prop.Checkers
 import java.io.DataOutputStream
 import java.io.ByteArrayOutputStream
 import org.scalacheck.Arbitrary
 
-class IntsSpec extends FlatSpec with ShouldMatchers with Checkers {
+class IntsSpec extends FlatSpec with Checkers {
 
   implicit lazy val arbInt = Arbitrary(Gen.chooseNum(Int.MinValue, Int.MaxValue))
 

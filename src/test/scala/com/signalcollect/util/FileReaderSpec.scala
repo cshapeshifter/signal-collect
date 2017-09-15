@@ -20,12 +20,12 @@ package com.signalcollect.util
 
 import scala.collection.mutable.ArrayBuffer
 import org.scalatest.prop.Checkers
-import org.scalatest.ShouldMatchers
+import org.scalatest.Matchers._
 import org.scalatest.FlatSpec
 import java.io.File
 import com.signalcollect.loading.LoadingSpec
 
-class FileReaderSpec extends FlatSpec with ShouldMatchers with Checkers {
+class FileReaderSpec extends FlatSpec with Checkers {
 
   val sep = File.separator
   val testFilePath1 = s"ascii-ints.txt"

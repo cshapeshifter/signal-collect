@@ -484,6 +484,8 @@ class WebSocketConsoleServer[Id: TypeTag, Signal: TypeTag](port: InetSocketAddre
       socket.getRemoteSocketAddress.getAddress.getHostAddress)
   }
 
+  def onStart() { }
+
   /** Create a current StateDataProvider message and send it to all clients */
   def updateClientState() {
     val data = new StateDataProvider(this).fetch

@@ -20,7 +20,7 @@ package com.signalcollect.loading
 
 import scala.collection.mutable.ArrayBuffer
 import org.scalatest.prop.Checkers
-import org.scalatest.ShouldMatchers
+import org.scalatest.Matchers._
 import org.scalatest.FlatSpec
 import java.io.File
 import com.signalcollect.util.FileReader
@@ -30,7 +30,7 @@ import com.signalcollect.util.AsciiIntIterator
 import com.signalcollect.util.AsciiIntIterator
 import java.io.FileInputStream
 
-class AdjacencyListLoaderSpec extends FlatSpec with ShouldMatchers with Checkers {
+class AdjacencyListLoaderSpec extends FlatSpec with Checkers {
 
   val testFilePath = "adjacency-list-format"
 

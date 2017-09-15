@@ -1,3 +1,4 @@
+project
 *.snapshot
 !/.gitignore
 log_messages.txt

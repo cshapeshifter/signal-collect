@@ -77,8 +77,6 @@ class GraphBuilder[@specialized(Int, Long) Id: ClassTag: TypeTag, Signal: ClassT
       preallocatedNodes = None,
       nodeProvisioner = new ClusterNodeProvisioner(numberOfNodes = 1),
       statsReportingIntervalInMilliseconds = 0,
-      kryoRegistrations = List(),
-      kryoInitializer = None,
       serializeMessages = None,
       workerFactory = new AkkaWorkerFactory[Id, Signal],
       messageBusFactory = new BulkAkkaMessageBusFactory[Id, Signal](1000, true),
@@ -281,24 +279,9 @@ class GraphBuilder[@specialized(Int, Long) Id: ClassTag: TypeTag, Signal: ClassT
   def withHeartbeatInterval(newHeartbeatIntervalInMilliseconds: Int) = withStatsReportingInterval(newHeartbeatIntervalInMilliseconds)
 
   /**
-   *  Specifies additional Kryo serialization registrations.
-   */
-  def withKryoRegistrations(newKryoRegistrations: List[String]) =
-    builder(config.copy(kryoRegistrations = newKryoRegistrations))
-
-  /**
    *  If true forces Akka message serialization even in local settings.
    */
   def withMessageSerialization(newSerializeMessages: Boolean) =
     builder(config.copy(serializeMessages = Some(newSerializeMessages)))
-
-  /**
-   *  Sets the fully qualified class name of the Kryo initializer. This class can be used to
-   *  set advanced Kryo configuration parameters.
-   *  Additional documentation can be found at https://github.com/romix/akka-kryo-serialization,
-   *  in the section "How to create a custom initializer for Kryo".
-   */
-  def withKryoInitializer(newKryoInitializer: String) =
-    builder(config.copy(kryoInitializer = Some(newKryoInitializer)))
 
 }

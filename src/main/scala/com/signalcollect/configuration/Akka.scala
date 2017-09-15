@@ -43,21 +43,10 @@ object Akka {
   val serializationBindingsPath = "akka.actor.serialization-bindings"
   def serializationBindingsValues(
     existingValues: Map[String, String])(registrations: List[String]): ConfigValue = {
-    val newValues = registrations.map { registration =>
-      (registration, "kryo")
+    val newValues = registrations.map { registration => registration
     }
     value(existingValues ++ newValues)
   }
-
-  val kryoClassesPath = "akka.actor.kryo.classes"
-  def kryoClassesValues(
-    existingValues: List[String])(registrations: List[String]): ConfigValue = {
-    value(existingValues ++ registrations)
-  }
-
-  val kryoInitializerPath = "akka.actor.kryo.kryo-custom-serializer-init"
-
-  val kryoSerializerPoolSizePath = "akka.actor.kryo.serializer-pool-size"
 
   val hostnamePath = "akka.actor.remote.netty.tcp.hostname"
 
@@ -113,8 +102,6 @@ pool-size-max = $numberOfCores
   def config(
     serializeMessages: Option[Boolean],
     loggingLevel: Option[LogLevel],
-    kryoRegistrations: List[String],
-    kryoInitializer: Option[String],
     hostname: String = InetAddress.getLocalHost.getHostAddress,
     port: Option[Int] = None,
     seedPort: Option[Int] = None,
@@ -124,10 +111,6 @@ pool-size-max = $numberOfCores
     val configWithParameters = ConfigFactory.empty.
       optionalMap(serializeMessagesPath, serializeMessages, serializeMessagesValues).
       optionalMap(loggingLevelPath, loggingLevel, loggingLevelValues _).
-      optionalMap(serializationBindingsPath, Some(kryoRegistrations), serializationBindingsValues(defaults.as[Map[String, String]](serializationBindingsPath)) _).
-      optionalMap(kryoClassesPath, Some(kryoRegistrations), kryoClassesValues(defaults.as[List[String]](kryoClassesPath)) _).
-      optionalMap(kryoInitializerPath, kryoInitializer, value _).
-      optionalMap(kryoSerializerPoolSizePath, Some(2 * numberOfCores), value _).
       optionalMap(hostnamePath, Some(hostname), value _).
       optionalMap(portPath, port, value _).
       optionalMap(seedPortPath, seedPort, value _).

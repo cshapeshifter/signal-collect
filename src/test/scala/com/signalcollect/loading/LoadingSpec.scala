@@ -20,12 +20,12 @@ package com.signalcollect.loading
 
 import scala.collection.mutable.ArrayBuffer
 import org.scalatest.prop.Checkers
-import org.scalatest.ShouldMatchers
+import org.scalatest.Matchers._
 import org.scalatest.FlatSpec
 import java.io.File
 import com.signalcollect.util.FileReader
 
-class LoadingSpec extends FlatSpec with ShouldMatchers with Checkers {
+class LoadingSpec extends FlatSpec with Checkers {
 
   val testFile = s"notredame2"
   

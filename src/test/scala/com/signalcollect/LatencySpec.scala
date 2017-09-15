@@ -19,12 +19,12 @@
 package com.signalcollect
 
 import org.scalatest.FlatSpec
-import org.scalatest.ShouldMatchers
+import org.scalatest.Matchers._
 import com.signalcollect.examples.Location
 import com.signalcollect.examples.Path
 import com.signalcollect.configuration.ExecutionMode
 
-class LatencySpec extends FlatSpec with ShouldMatchers {
+class LatencySpec extends FlatSpec {
 
   "Signal/Collect" should "terminate with a very low latency when an execution does nothing" in {
     val startTime = System.currentTimeMillis

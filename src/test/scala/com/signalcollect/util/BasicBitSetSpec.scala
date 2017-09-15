@@ -22,13 +22,13 @@ import org.scalacheck.Gen
 import org.scalacheck.Gen._
 import org.scalacheck.Arbitrary._
 import org.scalatest.FlatSpec
-import org.scalatest.ShouldMatchers
+import org.scalatest.Matchers._
 import org.scalatest.prop.Checkers
 import java.io.DataOutputStream
 import java.io.ByteArrayOutputStream
 import org.scalacheck.Arbitrary
 
-class BasicBitSetSpec extends FlatSpec with ShouldMatchers with Checkers {
+class BasicBitSetSpec extends FlatSpec with Checkers {
 
   "BasicBitSet" should "correctly retrieve all entries when all bits are set" in {
     val longBitSet = new BasicBitSet(-1l) // -1 has all bits set (2's complement)

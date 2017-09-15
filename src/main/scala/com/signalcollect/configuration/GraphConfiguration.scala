@@ -62,8 +62,6 @@ case class GraphConfiguration[@specialized(Int, Long) Id: ClassTag, Signal: Clas
   preallocatedNodes: Option[Array[ActorRef]],
   nodeProvisioner: NodeProvisioner[Id, Signal],
   statsReportingIntervalInMilliseconds: Int,
-  kryoRegistrations: List[String],
-  kryoInitializer: Option[String], // Uses Akka config if undefined
   serializeMessages: Option[Boolean], // Uses Akka config if undefined
   workerFactory: WorkerFactory[Id, Signal],
   messageBusFactory: MessageBusFactory[Id, Signal],

@@ -32,9 +32,7 @@ object ClusterNodeEntryPointTemplate {
 
   def config: Config = Akka.config(
     serializeMessages = None,
-    loggingLevel = None,
-    kryoRegistrations = List.empty,
-    kryoInitializer = None)
+    loggingLevel = None)
 
   def systemName: String = "SignalCollect"
 

@@ -137,9 +137,7 @@ class DefaultGraph[Id: ClassTag: TypeTag, Signal: ClassTag: TypeTag](
 
   val akkaConfig = Akka.config(
     config.serializeMessages,
-    config.loggingLevel,
-    config.kryoRegistrations,
-    config.kryoInitializer)
+    config.loggingLevel)
   override def toString: String = "DefaultGraph"
 
   val system: ActorSystem = {

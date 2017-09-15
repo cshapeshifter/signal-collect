@@ -44,8 +44,6 @@ object TestGraph {
       .withFallback(Akka.config(
         serializeMessages = None,
         loggingLevel = None,
-        kryoRegistrations = GraphBuilder.config.kryoRegistrations,
-        kryoInitializer = None,
         port = Some(port),
         seedPort = Some(port)))
     val actorSystemName = "SignalCollectTestSystem"

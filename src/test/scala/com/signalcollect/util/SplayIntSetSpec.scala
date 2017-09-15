@@ -22,7 +22,7 @@ import org.scalacheck.Gen
 import org.scalacheck.Gen._
 import org.scalacheck.Arbitrary._
 import org.scalatest.FlatSpec
-import org.scalatest.ShouldMatchers
+import org.scalatest.Matchers._
 import org.scalatest.prop.Checkers
 import java.io.DataOutputStream
 import java.io.ByteArrayOutputStream
@@ -33,7 +33,7 @@ case class SimpleSplayIntSet(
   val overheadFraction: Float,
   val maxNodeIntSetSize: Int) extends SplayIntSet
 
-class SplayIntSetSpec extends FlatSpec with ShouldMatchers with Checkers {
+class SplayIntSetSpec extends FlatSpec with Checkers {
 
   implicit lazy val arbInt = Arbitrary(Gen.chooseNum(Int.MinValue, Int.MaxValue))
 
