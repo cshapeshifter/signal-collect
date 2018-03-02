@@ -1,6 +1,6 @@
 name := "signal-collect"
 
-version := "8.0.8"
+version := "8.0.9"
 
 organization in ThisBuild := "com.signalcollect"
 
@@ -29,10 +29,10 @@ libraryDependencies ++= {
    "org.webjars" % "reconnecting-websocket" % "1.0.0",
    "org.webjars" % "intro.js" % "1.0.0",
    "org.scala-lang" % "scala-reflect" % "2.12.3",
-   "com.typesafe.akka" %% "akka-actor" % "2.5.4",
-   "com.typesafe.akka" %% "akka-cluster" % "2.5.4",
-   "com.typesafe.akka" %% "akka-remote" % "2.5.4",
-   "com.typesafe.akka" %% "akka-testkit" % "2.5.4" % Test,
+   "com.typesafe.akka" %% "akka-actor" % "2.5.7",
+   "com.typesafe.akka" %% "akka-cluster" % "2.5.7",
+   "com.typesafe.akka" %% "akka-remote" % "2.5.7",
+   "com.typesafe.akka" %% "akka-testkit" % "2.5.7" % Test,
    "com.novocode" % "junit-interface" % "0.11" % Test,
    "org.scalatest" %% "scalatest" % "3.0.1" % Test,
    "org.scalacheck" %% "scalacheck" % "1.13.4" % Test,
