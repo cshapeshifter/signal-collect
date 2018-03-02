@@ -10,6 +10,8 @@ cancelable in Global := true
 
 parallelExecution in Test := false
 
+test in assembly := false
+
 scalacOptions in ThisBuild ++= Seq(
   "-Ywarn-unused-import",
   "-feature",
@@ -24,7 +26,7 @@ libraryDependencies ++= {
    "com.iheart" %% "ficus" % "1.4.2",
    "org.json4s" %% "json4s-native" % "3.5.3",
    "org.java-websocket" % "Java-WebSocket" % "1.3.4",
-   "org.webjars" % "d3js" % "4.10.2",
+   "org.webjars" % "d3js" % "3.5.17",
    "org.webjars" % "jquery" % "3.2.1",
    "org.webjars" % "reconnecting-websocket" % "1.0.0",
    "org.webjars" % "intro.js" % "1.0.0",
