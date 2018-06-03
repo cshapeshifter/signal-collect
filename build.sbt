@@ -1,10 +1,10 @@
 name := "signal-collect"
 
-version := "8.0.9"
+version := "8.0.10"
 
 organization in ThisBuild := "com.signalcollect"
 
-scalaVersion in ThisBuild := "2.12.3"
+scalaVersion in ThisBuild := "2.12.6"
 
 cancelable in Global := true
 
@@ -30,7 +30,7 @@ libraryDependencies ++= {
    "org.webjars" % "jquery" % "3.2.1",
    "org.webjars" % "reconnecting-websocket" % "1.0.0",
    "org.webjars" % "intro.js" % "1.0.0",
-   "org.scala-lang" % "scala-reflect" % "2.12.3",
+   "org.scala-lang" % "scala-reflect" % scalaVersion.value,
    "com.typesafe.akka" %% "akka-actor" % "2.5.7",
    "com.typesafe.akka" %% "akka-cluster" % "2.5.7",
    "com.typesafe.akka" %% "akka-remote" % "2.5.7",
