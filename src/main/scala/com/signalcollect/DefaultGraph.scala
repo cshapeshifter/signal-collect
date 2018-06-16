@@ -163,12 +163,11 @@ class DefaultGraph[Id: ClassTag: TypeTag, Signal: ClassTag: TypeTag](
   log.debug(s"Received ${nodeActors.length} nodes.")
   // Bootstrap => sent and received messages are not counted for termination detection.
   val bootstrapNodeProxies = nodeActors.map(AkkaProxy.newInstance[NodeActor[Id, Signal]](_)) // MessageBus not initialized at this point.
-  val parallelBootstrapNodeProxies = bootstrapNodeProxies.par
   val numberOfNodes = bootstrapNodeProxies.length
 
-  val numberOfWorkers = bootstrapNodeProxies.par.map(_.numberOfCores).sum
+  val numberOfWorkers = bootstrapNodeProxies.map(_.numberOfCores).sum
 
-  parallelBootstrapNodeProxies foreach (_.initializeMessageBus(numberOfWorkers, numberOfNodes, config.messageBusFactory, config.mapperFactory))
+  bootstrapNodeProxies foreach (_.initializeMessageBus(numberOfWorkers, numberOfNodes, config.messageBusFactory, config.mapperFactory))
 
   val mapper = new DefaultVertexToWorkerMapper(numberOfNodes, numberOfWorkers / numberOfNodes)
 
@@ -220,7 +219,7 @@ class DefaultGraph[Id: ClassTag: TypeTag, Signal: ClassTag: TypeTag](
 
   initializeMessageBuses
 
-  parallelBootstrapNodeProxies.foreach(_.initializeIdleDetection)
+  bootstrapNodeProxies.foreach(_.initializeIdleDetection)
   lazy val graphEditor = coordinatorProxy.getGraphEditor
   lazy val workerApi = coordinatorProxy.getWorkerApi
   workerApi.initializeIdleDetection
@@ -231,12 +230,12 @@ class DefaultGraph[Id: ClassTag: TypeTag, Signal: ClassTag: TypeTag](
   def initializeMessageBuses(): Unit = {
     log.debug("Default graph is initializing registries ...")
     val registries: List[MessageRecipientRegistry] = coordinatorProxy :: bootstrapWorkerProxies.toList ++ bootstrapNodeProxies.toList
-    for (registry <- registries.par) {
+    for (registry <- registries) {
       registry.registerCoordinator(coordinatorActor)
-      for (workerId <- (0 until numberOfWorkers).par) {
+      for (workerId <- (0 until numberOfWorkers)) {
         registry.registerWorker(workerId, workerActors(workerId))
       }
-      for (nodeId <- (0 until numberOfNodes).par) {
+      for (nodeId <- (0 until numberOfNodes)) {
         registry.registerNode(nodeId, nodeActors(nodeId))
       }
     }
@@ -752,7 +751,7 @@ class DefaultGraph[Id: ClassTag: TypeTag, Signal: ClassTag: TypeTag](
     if (config.actorSystem.isEmpty && !system.whenTerminated.isCompleted) {
       try {
         // The node proxies also shutdown their respective actor systems.
-        parallelBootstrapNodeProxies.foreach(_.shutdown)
+        bootstrapNodeProxies.foreach(_.shutdown)
       } catch {
         case t: Throwable =>
       }
