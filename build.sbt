@@ -1,6 +1,6 @@
 name := "signal-collect"
 
-version := "8.0.10"
+version := "8.0.11"
 
 organization in ThisBuild := "com.signalcollect"
 

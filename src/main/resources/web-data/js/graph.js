@@ -160,13 +160,14 @@ scc.modules.Graph = function() {
     var tree = { "name": "root", "children": jsonIntoTree(data.info)}
 
     // Clicking on the Id shall load the node
-    $("#exposition_title").html(
-        'ID: <span class="tid">' + data.id + '</span><br/>' +
+    var expoTitle = $("#exposition_title").html(
+        'ID: <span class="tid"></span><br/>' +
         '<span>Vertex type: ' + data.t + '</span><br/>' +
         '<span>State: ' + data.state + '</span><br/>' +
         '<span>Signal score: ' + data.ss + '</span><br/>' +
         '<span>Collect score: ' + data.cs + '</span><br/>')
     $("#exposition_data_title").html('Information exposed by Vertex:')
+    $(".tid").text(data.id)
     $(".tid").click(function () {
       graphD3.addBySubstring($(this).text());
     });
@@ -197,15 +198,17 @@ scc.modules.Graph = function() {
     t.exit().remove();
     t.html(function (d) {
       var s = d.name;
-      s = '<span class="tvalue_key">' + s + '</span>';
+      s = '<span class="tvalue_key"></span>';
       if (d.val === undefined) { 
         s = s + ": ";
       }
-      else { 
-        s = s + '<br/><span class="tvalue">' + d.val + '</span>';
+      else {
+        s = s + '<br/><span class="tvalue"></span>';
       }
       return s;
     })
+    t.select(".tvalue_key").text(function (d) { return d.name })
+    t.select(".tvalue").text(function (d) { return d.val })
   }
 
   /**
